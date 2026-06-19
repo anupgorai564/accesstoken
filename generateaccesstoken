@@ -1,0 +1,38 @@
+
+from kiteconnect import KiteConnect
+
+# Replace with your credentials
+API_KEY = "xxx"
+API_SECRET = "xxx"
+
+kite = KiteConnect(api_key=API_KEY)
+
+# Step 1: Generate login URL
+print("Login URL:")
+print(kite.login_url())
+
+# Step 2:
+# Open the URL in a browser and log in.
+# After successful login, you will be redirected to your redirect URL.
+# Copy the request_token from the redirected URL.
+
+request_token = input("Enter request_token: ").strip()
+
+# Step 3: Generate access token
+data = kite.generate_session(
+    request_token=request_token,
+    api_secret=API_SECRET
+)
+
+access_token = data["access_token"]
+
+print("\nAccess Token:", access_token)
+print("User ID:", data["user_id"])
+
+# Step 4: Set access token for subsequent API calls
+kite.set_access_token(access_token)
+
+# Example API call
+profile = kite.profile()
+print("\nProfile:")
+print(profile)
