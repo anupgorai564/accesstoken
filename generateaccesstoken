@@ -1,6 +1,8 @@
 
 from kiteconnect import KiteConnect
 
+
+# This code will generate access token after submitting request token
 # Replace with your credentials
 API_KEY = "xxx"
 API_SECRET = "xxx"
